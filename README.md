@@ -1,12 +1,12 @@
-#E2 Plataforma Libros
+# E2 Plataforma Libros
 
-##Diagrama de la Base de Datos
+## Diagrama de la Base de Datos
 
 MR de la Base de Datos
 ![Diagrama MR](Diagramas/MR%20Grupo%2017.png)
 
 
-##Scripts SQL (PostgreSQL)
+## Scripts SQL (PostgreSQL)
 
 Ejecutar los scripts en orden (nombre de archivo)
 
