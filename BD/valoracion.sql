@@ -1,8 +1,8 @@
--- Table: public.Valoracion
+-- Table: public.VALORACION
 
--- DROP TABLE public."Valoracion";
+-- DROP TABLE public."VALORACION";
 
-CREATE TABLE public."Valoracion"
+CREATE TABLE public."VALORACION"
 (
     id_valoracion integer NOT NULL,
     comentario "char",
@@ -14,5 +14,5 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public."Valoracion"
+ALTER TABLE public."VALORACION"
     OWNER to postgres;
