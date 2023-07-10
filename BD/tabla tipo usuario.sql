@@ -1,8 +1,8 @@
--- Table: public.TIPO_USUARIO
+-- Table: public.Tipo_usuario
 
--- DROP TABLE IF EXISTS public."TIPO_USUARIO";
+-- DROP TABLE IF EXISTS public."Tipo_usuario";
 
-CREATE TABLE TIPO_USUARIO
+CREATE TABLE IF NOT EXISTS public."Tipo_usuario"
 (
     id_tipo_usuario integer NOT NULL,
     autor boolean,
@@ -10,5 +10,10 @@ CREATE TABLE TIPO_USUARIO
     registrado boolean,
     administrador boolean,
     permiso "char",
-    PRIMARY KEY (id_tipo_usuario)
-);
+    CONSTRAINT "TIPO_USUARIO_pkey" PRIMARY KEY (id_tipo_usuario)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."Tipo_usuario"
+    OWNER to postgres;
