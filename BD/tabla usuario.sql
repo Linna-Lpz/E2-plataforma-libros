@@ -1,6 +1,6 @@
--- Table: public.Usuario
+-- Table: public.Valoracion
 
--- DROP TABLE IF EXISTS public."Usuario";
+-- DROP TABLE IF EXISTS public."Valoracion";
 
 CREATE TABLE IF NOT EXISTS public."Usuario"
 (
