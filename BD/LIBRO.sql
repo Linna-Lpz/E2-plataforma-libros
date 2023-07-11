@@ -1,8 +1,8 @@
--- Table: public.LIBRO
+-- Table: public.Libro
 
--- DROP TABLE public."LIBRO";
+-- DROP TABLE public."Libro";
 
-CREATE TABLE public."LIBRO"
+CREATE TABLE public."Libro"
 (
     "Año" integer,
     "Descripcion" text COLLATE pg_catalog."default" NOT NULL,
@@ -24,5 +24,5 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public."LIBRO"
+ALTER TABLE public."Libro"
     OWNER to postgres;
