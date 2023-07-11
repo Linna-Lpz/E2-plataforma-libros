@@ -1,0 +1,4 @@
+//cata: sentencia para mostrar ranking de los libros añadidos a favoritos una mayor cantidad de veces
+select * from "Libro" order by "Numero_favoritos" DESC
+
+
