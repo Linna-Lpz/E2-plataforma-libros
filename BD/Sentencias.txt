@@ -16,3 +16,6 @@ SELECT "favoritos"   --Selecciona los favoritos de la tabla "Usuario_libro"
 FROM "Usuario", "Usuario_libro"  --Se indica las tablas que se ocuparan
 WHERE "correo" = 'usuario1@example.com' and "correo" = "fk_usuario" 
 --Se condiciona que el id de la "tabla usuario" debe ser igual a la llave foranea de la tabla intermedia "Usuario_libro"
+
+--Sentencia que muestra el precio final del carrito
+SELECT saldo_total FROM carrito;
