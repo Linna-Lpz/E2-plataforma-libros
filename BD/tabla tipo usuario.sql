@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS public."Tipo_usuario"
 (
     id_tipo_usuario integer NOT NULL,
     es_registrado boolean,
-    tipo_permiso character varying COLLATE pg_catalog."default",
+    tipo_rol character varying COLLATE pg_catalog."default",
     CONSTRAINT "TIPO_USUARIO_pkey" PRIMARY KEY (id_tipo_usuario)
 )
 
