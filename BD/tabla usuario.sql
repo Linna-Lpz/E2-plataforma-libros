@@ -4,14 +4,15 @@
 
 CREATE TABLE IF NOT EXISTS public."Usuario"
 (
-    correo char NOT NULL,
+    correo varchar NOT NULL,
     fecha_nacimiento date,
-    contraseña "char",
-    nombre_usuario char,
+    contraseña varchar,
+    nombre_usuario varchar,
     fk_tipo_usuario int,
     fk_ubicacion int,
     CONSTRAINT "Usuario_pkey" PRIMARY KEY (correo),
-    CONSTRAINT fk_tipo_usuario FOREIGN KEY (fk_tipo_usuario) REFERENCES public."Tipo_usuario"(id_tipo_usuario) MATCH SIMPLE
+    CONSTRAINT fk_tipo_usuario FOREIGN KEY (fk_tipo_usuario) REFERENCES public."Tipo_usuario"(id_tipo_usuario) MATCH SIMPLE,
+    CONSTRAINT fk_ubicacion FOREIGN KEY (fk_ubicacion) REFERENCES public."Ubicacion"(id_ubicacion) MATCH SIMPLE
 )
 
 TABLESPACE pg_default;

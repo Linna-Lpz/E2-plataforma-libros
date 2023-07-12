@@ -2,7 +2,7 @@
 
 -- DROP DATABASE IF EXISTS libros;
 
-CREATE DATABASE libros
+CREATE DATABASE Plataforma_libros
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
@@ -12,7 +12,7 @@ CREATE DATABASE libros
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 
-COMMENT ON DATABASE libros
+COMMENT ON DATABASE Plataforma_libros
     IS 'BD de Libros para DBD';
 
 
