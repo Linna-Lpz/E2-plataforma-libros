@@ -1,0 +1,15 @@
+//cata: sentencia para mostrar ranking de los libros añadidos a favoritos una mayor cantidad de veces
+select * from "Libro" order by "Numero_favoritos" DESC
+
+//vale y cata:
+SELECT AVG(repeticiones) as promedio_repeticiones
+FROM (
+	SELECT "Nombre_autor", COUNT(*) as repeticiones
+	FROM "Libro"
+	GROUP BY "Nombre_autor"
+) AS subconsulta;
+
+//vale:
+SELECT "favoritos"
+FROM "Usuario", "Usuario_libro"
+WHERE "correo" = 'usuario1@example.com' and "correo" = "fk_usuario"
