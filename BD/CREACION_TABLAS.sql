@@ -121,7 +121,7 @@ ALTER TABLE public."Libro"
 CREATE TABLE public.usuario_libro
 (
     id_usuario_libro integer NOT NULL,
-    favoritos character(1) COLLATE pg_catalog."default",
+    favoritos character varying COLLATE pg_catalog."default" NOT NULL,
     fk_usuario character varying COLLATE pg_catalog."default",
     fk_libro integer,
     CONSTRAINT usuario_libro_pkey PRIMARY KEY (id_usuario_libro),
@@ -150,7 +150,7 @@ CREATE TABLE public."Carrito"
 (
     id_carrito integer NOT NULL,
     n_productos integer NOT NULL,
-    ubicacion character(1) COLLATE pg_catalog."default" NOT NULL,
+    ubicacion character varying COLLATE pg_catalog."default" NOT NULL,
     saldo_total integer NOT NULL,
     fk_correo_carrito character varying COLLATE pg_catalog."default",
     CONSTRAINT "Carrito_pkey" PRIMARY KEY (id_carrito),
@@ -198,8 +198,8 @@ ALTER TABLE IF EXISTS public."Libro_Carrito"
 CREATE TABLE public.factura
 (
     id_factura integer NOT NULL,
-    metodo_pago character(1) COLLATE pg_catalog."default" NOT NULL,
-    correo character(1) COLLATE pg_catalog."default" NOT NULL,
+    metodo_pago character varying COLLATE pg_catalog."default" NOT NULL,
+    correo character varying COLLATE pg_catalog."default" NOT NULL,
     id_carrito integer NOT NULL,
     CONSTRAINT factura_pkey PRIMARY KEY (id_factura),
     CONSTRAINT factura_correo_fkey FOREIGN KEY (correo)
