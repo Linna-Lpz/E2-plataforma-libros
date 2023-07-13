@@ -19,3 +19,27 @@ WHERE "correo" = 'usuario1@example.com' and "correo" = "fk_usuario"
 
 --Sentencia que muestra el precio final del carrito
 SELECT saldo_total FROM "Carrito";
+
+--Sentencia que muestra los productos del carrito (id_carrito = 1)
+--Obtiene campos clave para el carrito
+SELECT l."Id_libro",
+	l."Nombre_libro",
+	l."nombre_autor",
+	l."Editorial",
+	l."Precio",
+	l."Stock",
+	l."Tipo_libro",
+	r."edad_minima",
+	u."nombre_ubicacion"
+FROM public."Libro_Carrito" as lc --Se toma la tabla Libro_Carrito como la principal y se va haciendo match con las demás por sus FK
+INNER JOIN public."Libro" as l --Para los datos del libro
+	ON l."Id_libro" = lc."libro_carrito_libro_fk" --match de los FK
+INNER JOIN public."Restriccion" as r --Para el dato de la edad mínima
+	ON r."id_restriccion" = l."fk_id_restriccion" --match de los FK
+INNER JOIN public."Ubicacion" as u --Para el dato de la ubicación
+	ON u."id_ubicacion" = l."fk_id_ubicacion" --match de los FK
+WHERE lc."libro_carrito_carrito_fk" = 1; --El Id del Carrito a mostrar
+
+--Sentencia que borra un libro (producto) del carrito (id_libro_carrito = 9)
+DELETE FROM public."Libro_Carrito"
+WHERE id_libro_carrito = 9;
