@@ -6,16 +6,16 @@ ORDER BY "Numero_favoritos" DESC --Ordena los libros con mayor numero de favorit
 --Sentencia que retorna el promedio de libros publicados por autor
 SELECT AVG(repeticiones) as promedio_repeticiones --Selecciona la cantidad de veces que se repite cada autor y obtiene el promedio
 FROM (   --Obtiene los datos obtenidos de la tabla temporal
-	SELECT "Nombre_autor", COUNT(*) as repeticiones --Selecciona el nombre del autor y cuenta la cantidad que se repite guardandolo en repeticiones
+	SELECT "nombre_autor", COUNT(*) as repeticiones --Selecciona el nombre del autor y cuenta la cantidad que se repite guardandolo en repeticiones
 	FROM "Libro" --Selecciona los nombres de la tabla "Libro"
-	GROUP BY "Nombre_autor" --Agrupa los autores
+	GROUP BY "nombre_autor" --Agrupa los autores
 ) AS subconsulta;
 
 --Sentencia que retorna los libros favoritos
 SELECT "favoritos"   --Selecciona los favoritos de la tabla "Usuario_libro"
-FROM "Usuario", "Usuario_libro"  --Se indica las tablas que se ocuparan
+FROM "Usuario", "usuario_libro"  --Se indica las tablas que se ocuparan
 WHERE "correo" = 'usuario1@example.com' and "correo" = "fk_usuario" 
 --Se condiciona que el id de la "tabla usuario" debe ser igual a la llave foranea de la tabla intermedia "Usuario_libro"
 
 --Sentencia que muestra el precio final del carrito
-SELECT saldo_total FROM carrito;
+SELECT saldo_total FROM "Carrito";
