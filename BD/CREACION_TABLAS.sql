@@ -171,7 +171,7 @@ ALTER TABLE public."Carrito"
 
 CREATE TABLE public."Libro_Carrito"
 (
-    id_libro_carrito serial NOT NULL,
+    id_libro_carrito integer NOT NULL,
     libro_carrito_libro_fk integer,
     libro_carrito_carrito_fk integer,
     PRIMARY KEY (id_libro_carrito),
