@@ -142,7 +142,9 @@ TABLESPACE pg_default;
 ALTER TABLE public.usuario_libro
     OWNER to postgres;
 
---8.Tabla Libro Carrito--
+
+
+--7.Tabla Carrito--
 
 CREATE TABLE public."Carrito"
 (
@@ -164,6 +166,32 @@ TABLESPACE pg_default;
 
 ALTER TABLE public."Carrito"
     OWNER to postgres;
+
+--8. Tabla Libro Carrito
+
+CREATE TABLE public."Libro_Carrito"
+(
+    id_libro_carrito integer NOT NULL,
+    libro_carrito_libro_fk integer,
+    libro_carrito_carrito_fk integer,
+    PRIMARY KEY (id_libro_carrito),
+    CONSTRAINT libro_carrito_libro_fk FOREIGN KEY (libro_carrito_libro_fk)
+        REFERENCES public."Libro" ("Id_libro") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT libro_carrito_carrito_fk FOREIGN KEY (libro_carrito_carrito_fk)
+        REFERENCES public."Carrito" (id_carrito) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+);
+
+ALTER TABLE IF EXISTS public."Libro_Carrito"
+    OWNER to postgres;
+
+
+
 
 --9.Tabla Factura--
 
