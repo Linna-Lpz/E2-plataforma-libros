@@ -43,3 +43,7 @@ WHERE lc."libro_carrito_carrito_fk" = 1; --El Id del Carrito a mostrar
 --Sentencia que borra un libro (producto) del carrito (id_libro_carrito = 9)
 DELETE FROM public."Libro_Carrito"
 WHERE id_libro_carrito = 9;
+
+--Sentencia que agrega un libro (id_libro) al carrito (id_libro_carrito= 9)
+INSERT INTO public."Libro_Carrito" (libro_carrito_libro_fk, libro_carrito_carrito_fk)
+VALUES ("id_libro", 9);
