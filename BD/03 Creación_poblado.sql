@@ -128,16 +128,16 @@ INSERT INTO "factura" ("id_factura", "metodo_pago", "correo", "id_carrito") VALU
 --10.Poblacion tabla valoracion --
 
 INSERT INTO "Valoracion" ("id_valoracion", "comentario", "puntuacion", "fk_id_libro", "fk_usuario_valoracion") VALUES
-(1, '¡Me encantó este libro!', 5, 1),
-(2, 'Recomiendo este libro a todos los amantes del romance', 4, 2),
-(3, 'Un clásico que todos deberían leer', 4, 3),
-(4, 'Me transportó a un mundo lleno de fantasía', 5, 4),
-(5, 'Muy útil para aprender programación desde cero', 4, 5),
-(6, 'Un thriller que te mantendrá en vilo hasta el final', 5, 6),
-(7, 'Una novela histórica apasionante', 4, 7),
-(8, 'Me encantó la ambientación futurista', 5, 8),
-(9, '¡Me dio pesadillas! Muy recomendado para los amantes del terror', 4, 9),
-(10, 'Una lectura profunda y reflexiva', 4, 10);
+(1, '¡Me encantó este libro!', 5, 1, 'usuario1@example.com'),
+(2, 'Recomiendo este libro a todos los amantes del romance', 4, 2, 'usuario2@example.com'),
+(3, 'Un clásico que todos deberían leer', 4, 3, 'usuario3@example.com'),
+(4, 'Me transportó a un mundo lleno de fantasía', 5, 4, 'usuario4@example.com'),
+(5, 'Muy útil para aprender programación desde cero', 4, 5, 'usuario5@example.com'),
+(6, 'Un thriller que te mantendrá en vilo hasta el final', 5, 6, 'usuario6@example.com'),
+(7, 'Una novela histórica apasionante', 4, 7, 'usuario7@example.com'),
+(8, 'Me encantó la ambientación futurista', 5, 8, 'usuario8@example.com'),
+(9, '¡Me dio pesadillas! Muy recomendado para los amantes del terror', 4, 9, 'usuario9@example.com'),
+(10, 'Una lectura profunda y reflexiva', 4, 10, 'usuario10@example.com');
 
 --11.Poblacion tabla valoracion --
 
