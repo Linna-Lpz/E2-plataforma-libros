@@ -127,7 +127,7 @@ INSERT INTO "factura" ("id_factura", "metodo_pago", "correo", "id_carrito") VALU
 
 --10.Poblacion tabla valoracion --
 
-INSERT INTO "Valoracion" ("id_valoracion", "comentario", "puntuacion", "fk_id_libro") VALUES
+INSERT INTO "Valoracion" ("id_valoracion", "comentario", "puntuacion", "fk_id_libro", "fk_usuario_valoracion") VALUES
 (1, '¡Me encantó este libro!', 5, 1),
 (2, 'Recomiendo este libro a todos los amantes del romance', 4, 2),
 (3, 'Un clásico que todos deberían leer', 4, 3),

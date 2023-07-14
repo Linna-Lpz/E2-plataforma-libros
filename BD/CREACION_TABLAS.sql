@@ -227,11 +227,17 @@ CREATE TABLE public."Valoracion"
     comentario character varying COLLATE pg_catalog."default",
     puntuacion integer NOT NULL,
     fk_id_libro integer,
+    fk_usuario_valoracion character varying COLLATE pg_catalog."default",
     CONSTRAINT "Valoracion_pkey" PRIMARY KEY (id_valoracion),
     CONSTRAINT fk_id_libro FOREIGN KEY (fk_id_libro)
         REFERENCES public."Libro" ("Id_libro") MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
+    CONSTRAINT fk_usuario_valoracion FOREIGN KEY (fk_usuario_valoracion)
+        REFERENCES public."Usuario" (correo) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+
 )
 WITH (
     OIDS = FALSE
