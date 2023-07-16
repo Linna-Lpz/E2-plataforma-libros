@@ -40,10 +40,20 @@ INNER JOIN public."Ubicacion" as u --Para el dato de la ubicación
 	ON u."id_ubicacion" = l."fk_id_ubicacion" --match de los FK
 WHERE lc."libro_carrito_carrito_fk" = 1; --El Id del Carrito a mostrar
 
+
 --Sentencia que borra un libro (producto) del carrito (id_libro_carrito = 9)
 DELETE FROM public."Libro_Carrito"
 WHERE id_libro_carrito = 9;
 
---Sentencia que agrega un producto (libro) al carrito
-INSERT INTO "Carrito" ("id_carrito", "n_productos", "ubicacion", "saldo_total", "fk_correo_carrito")
-VALUES (11, 1, 'D', 50, 'usuario1@example.com');
+UPDATE "Carrito"
+SET "n_productos" = "n_productos" + 1 
+WHERE "id_carrito" = 4;
+UPDATE "Carrito"
+SET "saldo_total" = "saldo_total" + (
+    SELECT "Precio" 
+    FROM "Libro" 
+    WHERE "Id_libro" = 1
+)
+WHERE "id_carrito" = 4;
+INSERT INTO "Libro_Carrito" ("id_libro_carrito", "libro_carrito_libro_fk", "libro_carrito_carrito_fk")
+VALUES (11, 1, 4);

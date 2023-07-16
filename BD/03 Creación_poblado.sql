@@ -82,22 +82,20 @@ INSERT INTO "usuario_libro" ("id_usuario_libro", "favoritos", "fk_usuario", "fk_
 (9, 'S', 'usuario9@example.com', 9),
 (10, 'N', 'usuario10@example.com', 10);
 
---7.Poblacion tabla carrito --
+--7.Población tabla carrito--
 
 INSERT INTO "Carrito" ("id_carrito", "n_productos", "ubicacion", "saldo_total", "fk_correo_carrito") VALUES
 
-(1, 3, 'A', 120, 'usuario1@example.com'),
-(2, 2, 'B', 75, 'usuario2@example.com'),
+
+(1, 3, 'A', 77, 'usuario1@example.com'),
+(2, 2, 'B', 55, 'usuario2@example.com'),
 (3, 1, 'C', 30, 'usuario3@example.com'),
-(4, 4, 'A', 160, 'usuario4@example.com'),
-(5, 2, 'B', 70, 'usuario5@example.com'),
-(6, 3, 'C', 105, 'usuario6@example.com'),
-(7, 2, 'A', 90, 'usuario7@example.com'),
-(8, 1, 'B', 40, 'usuario8@example.com'),
-(9, 4, 'C', 180, 'usuario9@example.com'),
-(10, 3, 'A', 110, 'usuario10@example.com');
+(4, 2, 'A', 38, 'usuario4@example.com'),
+(5, 2, 'B', 64, 'usuario5@example.com');
+
 
 --8.Poblacion tabla libro carrito --
+
 
 INSERT INTO public."Libro_Carrito" ("id_libro_carrito","libro_carrito_libro_fk", "libro_carrito_carrito_fk") VALUES
 (1, 1, 1),
@@ -106,10 +104,11 @@ INSERT INTO public."Libro_Carrito" ("id_libro_carrito","libro_carrito_libro_fk",
 (4, 4, 3),
 (5, 5, 2),
 (6, 6, 4),
+(8, 8, 5),
 (7, 7, 1),
-(8, 8, 3),
-(9, 9, 2),
+(9, 9, 5),
 (10, 10, 4);
+
 
 --9.Poblacion tabla factura --
 
@@ -119,11 +118,7 @@ INSERT INTO "factura" ("id_factura", "metodo_pago", "correo", "id_carrito") VALU
 (3, 'T', 'usuario3@example.com', 3),
 (4, 'T', 'usuario4@example.com', 4),
 (5, 'T', 'usuario5@example.com', 5),
-(6, 'T', 'usuario6@example.com', 6),
-(7, 'T', 'usuario7@example.com', 7),
-(8, 'T', 'usuario8@example.com', 8),
-(9, 'T', 'usuario9@example.com', 9),
-(10, 'T', 'usuario10@example.com', 10);
+
 
 --10.Poblacion tabla valoracion --
 
