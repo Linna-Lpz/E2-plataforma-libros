@@ -3,6 +3,7 @@ SELECT "Nombre_libro"  --Selecciona los nombres de la tabla "Libro"
 FROM "Libro"  --Se indica las tabla que se ocuparan
 ORDER BY "Numero_favoritos" DESC --Ordena los libros con mayor numero de favoritos de mayor a menor
 
+
 --Sentencia que retorna el promedio de libros publicados por autor
 SELECT AVG(repeticiones) as promedio_repeticiones --Selecciona la cantidad de veces que se repite cada autor y obtiene el promedio
 FROM (   --Obtiene los datos obtenidos de la tabla temporal
@@ -11,14 +12,18 @@ FROM (   --Obtiene los datos obtenidos de la tabla temporal
 	GROUP BY "nombre_autor" --Agrupa los autores
 ) AS subconsulta;
 
+
 --Sentencia que retorna los libros favoritos
-SELECT "favoritos"   --Selecciona los favoritos de la tabla "Usuario_libro"
-FROM "Usuario", "usuario_libro"  --Se indica las tablas que se ocuparan
-WHERE "correo" = 'usuario1@example.com' and "correo" = "fk_usuario" 
---Se condiciona que el id de la "tabla usuario" debe ser igual a la llave foranea de la tabla intermedia "Usuario_libro"
+SELECT L."Nombre_libro", U."nombre_usuario"
+FROM "usuario_libro" UL
+JOIN "Libro" L ON UL.fk_libro = L."Id_libro"
+JOIN "Usuario" U ON UL.fk_usuario = U.correo
+WHERE UL.favoritos = 'S' AND U.correo = 'usuario3@example.com';
+
 
 --Sentencia que muestra el precio final del carrito
 SELECT saldo_total FROM "Carrito";
+
 
 --Sentencia que muestra los productos del carrito (id_carrito = 1)
 --Obtiene campos clave para el carrito
@@ -45,7 +50,6 @@ WHERE lc."libro_carrito_carrito_fk" = 1; --El Id del Carrito a mostrar
 DELETE FROM "Libro_Carrito"
 WHERE "libro_carrito_carrito_fk" = 4
   AND "libro_carrito_libro_fk" = 1;
-
 UPDATE "Carrito"
 SET "n_productos" = "n_productos" - 1,
     "saldo_total" = "saldo_total" - (
