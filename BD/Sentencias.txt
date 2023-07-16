@@ -41,10 +41,22 @@ INNER JOIN public."Ubicacion" as u --Para el dato de la ubicación
 WHERE lc."libro_carrito_carrito_fk" = 1; --El Id del Carrito a mostrar
 
 
---Sentencia que borra un libro (producto) del carrito (id_libro_carrito = 9)
-DELETE FROM public."Libro_Carrito"
-WHERE id_libro_carrito = 9;
+--Sentencia que borra un libro (producto) del carrito 
+DELETE FROM "Libro_Carrito"
+WHERE "libro_carrito_carrito_fk" = 4
+  AND "libro_carrito_libro_fk" = 1;
 
+UPDATE "Carrito"
+SET "n_productos" = "n_productos" - 1,
+    "saldo_total" = "saldo_total" - (
+        SELECT "Precio"
+        FROM "Libro"
+        WHERE "Id_libro" = 1
+    )
+WHERE "id_carrito" = 4;
+
+
+--Sentencia que añade un libro (producto) al carrito
 UPDATE "Carrito"
 SET "n_productos" = "n_productos" + 1 
 WHERE "id_carrito" = 4;
