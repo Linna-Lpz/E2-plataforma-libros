@@ -232,7 +232,7 @@ CREATE TABLE public."Valoracion"
     CONSTRAINT fk_id_libro FOREIGN KEY (fk_id_libro)
         REFERENCES public."Libro" ("Id_libro") MATCH SIMPLE
         ON UPDATE NO ACTION
-        ON DELETE NO ACTION
+        ON DELETE NO ACTION,
     CONSTRAINT fk_usuario_valoracion FOREIGN KEY (fk_usuario_valoracion)
         REFERENCES public."Usuario" (correo) MATCH SIMPLE
         ON UPDATE NO ACTION
