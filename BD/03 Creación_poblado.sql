@@ -117,7 +117,7 @@ INSERT INTO "factura" ("id_factura", "metodo_pago", "correo", "id_carrito") VALU
 (2, 'T', 'usuario2@example.com', 2),
 (3, 'T', 'usuario3@example.com', 3),
 (4, 'T', 'usuario4@example.com', 4),
-(5, 'T', 'usuario5@example.com', 5),
+(5, 'T', 'usuario5@example.com', 5);
 
 
 --10.Poblacion tabla valoracion --
