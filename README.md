@@ -9,7 +9,11 @@ MR de la Base de Datos
 ## Tecnologías Aplicadas
 
 - **Base de Datos**: PostgreSQL 15
-
+- **Backend** (API REST):
+    - Java
+    - Spring Boot
+    - Gradle
+    - Sql2o
 
 ## Scripts de BD:
 
