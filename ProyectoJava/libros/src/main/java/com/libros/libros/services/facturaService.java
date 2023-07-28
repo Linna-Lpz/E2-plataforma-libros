@@ -12,42 +12,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.libros.libros.models.factura;
-import com.libros.libros.repositories.facturaRepository;
+import com.libros.libros.models.Factura;
+import com.libros.libros.repositories.FacturaRepository;
 
 @CrossOrigin
 @RestController
-public class facturaService {
-    private final facturaRepository facturaRepository;
+public class FacturaService {
+    private final FacturaRepository repository;
 
-    facturaService(facturaRepository facturaRepository) {
-        this.facturaRepository = facturaRepository;
+    FacturaService(FacturaRepository repository) {
+        this.repository = repository;
     }
 
     @GetMapping("/factura")
-    public List<factura> getAll() {
-        return facturaRepository.getAll();
+    public List<Factura> getAll() {
+        return repository.getAll();
     }
 
     @GetMapping("/factura/{id}")
-    public List<factura> getById(@PathVariable Integer id) {
-        return facturaRepository.getById(id);
+    public List<Factura> getById(@PathVariable Integer id) {
+        return repository.getById(id);
     }
 
     @PostMapping("/factura")
     @ResponseBody
-    public factura create(@RequestBody factura data) {
-        return facturaRepository.create(data);
+    public Factura create(@RequestBody Factura data) {
+        return repository.create(data);
     }
 
     @PutMapping("/factura/{id}")
     @ResponseBody
-    public factura update(@RequestBody factura data, @PathVariable Integer id) {
-        return facturaRepository.update(data, id);
+    public Factura update(@RequestBody Factura data, @PathVariable Integer id) {
+        data.setId_factura(id); 
+        return repository.update(data);
     }
 
     @DeleteMapping("/factura/{id}")
     public void delete(@PathVariable Integer id) {
-        facturaRepository.delete(id);
+        repository.delete(id);
     }
 }

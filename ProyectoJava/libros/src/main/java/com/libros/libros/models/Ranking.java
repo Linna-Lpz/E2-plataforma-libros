@@ -1,20 +1,20 @@
 package com.libros.libros.models;
 
 public class Ranking {
-	private Integer id_ranking;
-	private Integer fk_id_libro;
+    private Integer id_ranking;
+    private Integer id_libro;
 
+    
     public Integer getId_ranking() {
         return id_ranking;
     }
-    public void setId_ranking(Integer id_ranking) {
-        this.id_ranking = id_ranking;
+    public void setId_ranking(Integer new_value) {
+        this.id_ranking = new_value;
     }
-    public Integer getFk_id_libro() {
-        return fk_id_libro;
+    public Integer getId_libro() {
+        return id_libro;
     }
-    public void setFk_id_libro(Integer fk_id_libro) {
-        this.fk_id_libro = fk_id_libro;
+    public void setId_libro(Integer new_value) {
+        this.id_libro = new_value;
     }
-
 }

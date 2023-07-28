@@ -17,31 +17,85 @@ public class ValoracionRepositoryImp implements ValoracionRepository {
 
     @Override
     public List<Valoracion> getAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        try(Connection conn = sql2o.open()) {
+            return conn.createQuery("SELECT * FROM valoracion")
+            .executeAndFetch(Valoracion.class);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public List<Valoracion> getById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery("SELECT * FROM valoracion WHERE id_valoracion = :id ")
+                    .addParameter("id", id)
+                    .executeAndFetch(Valoracion.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Valoracion create(Valoracion data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        try(Connection conn = sql2o.open()){
+            String sql = "INSERT INTO valoracion (\n" +
+                             "comentario,puntuacion,id_libro,id_usuario\n" +
+                         ") VALUES (\n" +
+                             ":comentario, :puntuacion, :id_libro, :id_usuario\n" +
+                         ")";
+            conn.createQuery(sql, false)
+                .addParameter("comentario", data.getComentario())
+                .addParameter("puntuacion", data.getPuntuacion())
+                .addParameter("id_libro", data.getId_libro())
+                .addParameter("id_usuario", data.getId_usuario())
+
+                .executeUpdate();
+                return data;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
-    public Valoracion update(Valoracion data, Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public Valoracion update(Valoracion data) {
+        try(Connection conn = sql2o.open()){
+            Integer id = data.getId_valoracion();
+            String sql = "" +
+                "UPDATE valoracion SET\r\n" +
+                    "comentario = :comentario, puntuacion = :puntuacion, id_libro = :id_libro, id_usuario = :id_usuario" +
+                "WHERE id_valoracion = :id";
+            conn.createQuery(sql, false)
+                .addParameter("id", id)
+                .addParameter("comentario", data.getComentario())
+                .addParameter("puntuacion", data.getPuntuacion())
+                .addParameter("id_libro", data.getId_libro())
+                .addParameter("id_usuario", data.getId_usuario())
+
+                .executeUpdate();
+                return data;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public void delete(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        try(Connection conn = sql2o.open()){
+            String sql = "" +
+                "DELETE FROM valoracion\r\n" +
+                "WHERE id_valoracion = :id";
+            conn.createQuery(sql, true)
+                .addParameter("id", id)
+                .executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
+    
 }

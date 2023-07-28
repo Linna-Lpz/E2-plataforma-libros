@@ -17,31 +17,79 @@ public class UbicacionRepositoryImp implements UbicacionRepository {
 
     @Override
     public List<Ubicacion> getAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        try(Connection conn = sql2o.open()) {
+            return conn.createQuery("SELECT * FROM ubicacion")
+            .executeAndFetch(Ubicacion.class);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public List<Ubicacion> getById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery("SELECT * FROM ubicacion WHERE id_ubicacion = :id ")
+                    .addParameter("id", id)
+                    .executeAndFetch(Ubicacion.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Ubicacion create(Ubicacion data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        try(Connection conn = sql2o.open()){
+            String sql = "INSERT INTO ubicacion (\n" +
+                             "nombre_ubicacion\n" +
+                         ") VALUES (\n" +
+                             ":nombre_ubicacion\n" +
+                         ")";
+            conn.createQuery(sql, false)
+                .addParameter("nombre_ubicacion", data.getNombre_ubicacion())
+
+                .executeUpdate();
+                return data;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
-    public Ubicacion update(Ubicacion data, Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public Ubicacion update(Ubicacion data) {
+        try(Connection conn = sql2o.open()){
+            Integer id = data.getId_ubicacion();
+            String sql = "" +
+                "UPDATE ubicacion SET\r\n" +
+                    "nombre_ubicacion = :nombre_ubicacion" +
+                "WHERE id_ubicacion = :id";
+            conn.createQuery(sql, false)
+                .addParameter("id", id)
+                .addParameter("nombre_ubicacion", data.getNombre_ubicacion())
+
+                .executeUpdate();
+                return data;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public void delete(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        try(Connection conn = sql2o.open()){
+            String sql = "" +
+                "DELETE FROM ubicacion\r\n" +
+                "WHERE id_ubicacion = :id";
+            conn.createQuery(sql, true)
+                .addParameter("id", id)
+                .executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
+    
 }

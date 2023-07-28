@@ -18,36 +18,37 @@ import com.libros.libros.repositories.Tipo_usuarioRepository;
 @CrossOrigin
 @RestController
 public class Tipo_usuarioService {
-    private final Tipo_usuarioRepository tipo_usuarioRepository;
+    private final Tipo_usuarioRepository repository;
 
-    Tipo_usuarioService(Tipo_usuarioRepository tipo_usuarioRepository) {
-        this.tipo_usuarioRepository = tipo_usuarioRepository;
+    Tipo_usuarioService(Tipo_usuarioRepository repository) {
+        this.repository = repository;
     }
 
     @GetMapping("/tipo_usuario")
     public List<Tipo_usuario> getAll() {
-        return tipo_usuarioRepository.getAll();
+        return repository.getAll();
     }
 
     @GetMapping("/tipo_usuario/{id}")
     public List<Tipo_usuario> getById(@PathVariable Integer id) {
-        return tipo_usuarioRepository.getById(id);
+        return repository.getById(id);
     }
 
     @PostMapping("/tipo_usuario")
     @ResponseBody
-    public Tipo_usuario create(@RequestBody Tipo_usuario tipo_usuario) {
-        return tipo_usuarioRepository.create(tipo_usuario);
+    public Tipo_usuario create(@RequestBody Tipo_usuario data) {
+        return repository.create(data);
     }
 
     @PutMapping("/tipo_usuario/{id}")
     @ResponseBody
-    public Tipo_usuario update(@RequestBody Tipo_usuario tipo_usuario, @PathVariable Integer id) {
-        return tipo_usuarioRepository.update(tipo_usuario, id);
+    public Tipo_usuario update(@RequestBody Tipo_usuario data, @PathVariable Integer id) {
+        data.setId_tipo_usuario(id); 
+        return repository.update(data);
     }
 
     @DeleteMapping("/tipo_usuario/{id}")
     public void delete(@PathVariable Integer id) {
-        tipo_usuarioRepository.delete(id);
+        repository.delete(id);
     }
 }

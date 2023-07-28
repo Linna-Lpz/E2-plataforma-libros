@@ -17,31 +17,79 @@ public class RankingRepositoryImp implements RankingRepository {
 
     @Override
     public List<Ranking> getAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        try(Connection conn = sql2o.open()) {
+            return conn.createQuery("SELECT * FROM ranking")
+            .executeAndFetch(Ranking.class);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public List<Ranking> getById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery("SELECT * FROM ranking WHERE id_ranking = :id ")
+                    .addParameter("id", id)
+                    .executeAndFetch(Ranking.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Ranking create(Ranking data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        try(Connection conn = sql2o.open()){
+            String sql = "INSERT INTO ranking (\n" +
+                             "id_libro\n" +
+                         ") VALUES (\n" +
+                             ":id_libro\n" +
+                         ")";
+            conn.createQuery(sql, false)
+                .addParameter("id_libro", data.getId_libro())
+
+                .executeUpdate();
+                return data;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
-    public Ranking update(Ranking data, Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    public Ranking update(Ranking data) {
+        try(Connection conn = sql2o.open()){
+            Integer id = data.getId_ranking();
+            String sql = "" +
+                "UPDATE ranking SET\r\n" +
+                    "id_libro = :id_libro" +
+                "WHERE id_ranking = :id";
+            conn.createQuery(sql, false)
+                .addParameter("id", id)
+                .addParameter("id_libro", data.getId_libro())
+
+                .executeUpdate();
+                return data;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public void delete(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        try(Connection conn = sql2o.open()){
+            String sql = "" +
+                "DELETE FROM ranking\r\n" +
+                "WHERE id_ranking = :id";
+            conn.createQuery(sql, true)
+                .addParameter("id", id)
+                .executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
+    
 }

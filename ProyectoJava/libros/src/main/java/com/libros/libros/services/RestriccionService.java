@@ -12,42 +12,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.libros.libros.models.Carrito;
-import com.libros.libros.repositories.CarritoRepository;
+import com.libros.libros.models.Restriccion;
+import com.libros.libros.repositories.RestriccionRepository;
 
 @CrossOrigin
 @RestController
-public class CarritoService {
-    private final CarritoRepository repository;
+public class RestriccionService {
+    private final RestriccionRepository repository;
 
-    CarritoService(CarritoRepository repository) {
+    RestriccionService(RestriccionRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/carrito")
-    public List<Carrito> getAll() {
+    @GetMapping("/restriccion")
+    public List<Restriccion> getAll() {
         return repository.getAll();
     }
 
-    @GetMapping("/carrito/{id}")
-    public List<Carrito> getById(@PathVariable Integer id) {
+    @GetMapping("/restriccion/{id}")
+    public List<Restriccion> getById(@PathVariable Integer id) {
         return repository.getById(id);
     }
 
-    @PostMapping("/carrito")
+    @PostMapping("/restriccion")
     @ResponseBody
-    public Carrito create(@RequestBody Carrito data) {
+    public Restriccion create(@RequestBody Restriccion data) {
         return repository.create(data);
     }
 
-    @PutMapping("/carrito/{id}")
+    @PutMapping("/restriccion/{id}")
     @ResponseBody
-    public Carrito update(@RequestBody Carrito data, @PathVariable Integer id) {
-        data.setId_carrito(id); 
+    public Restriccion update(@RequestBody Restriccion data, @PathVariable Integer id) {
+        data.setId_restriccion(id); 
         return repository.update(data);
     }
 
-    @DeleteMapping("/carrito/{id}")
+    @DeleteMapping("/restriccion/{id}")
     public void delete(@PathVariable Integer id) {
         repository.delete(id);
     }

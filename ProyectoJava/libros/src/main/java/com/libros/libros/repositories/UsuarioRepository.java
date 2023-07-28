@@ -6,8 +6,8 @@ import com.libros.libros.models.Usuario;
 
 public interface UsuarioRepository {
     public List<Usuario> getAll();
-    public List<Usuario> getById(String id);
+    public List<Usuario> getById(Integer id);
     public Usuario create(Usuario data);
-    public Usuario update(Usuario data, String id);
-    public void delete(String id);
+    public Usuario update(Usuario data);
+    public void delete(Integer id);
 }

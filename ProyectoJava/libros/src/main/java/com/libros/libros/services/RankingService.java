@@ -12,42 +12,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.libros.libros.models.Carrito;
-import com.libros.libros.repositories.CarritoRepository;
+import com.libros.libros.models.Ranking;
+import com.libros.libros.repositories.RankingRepository;
 
 @CrossOrigin
 @RestController
-public class CarritoService {
-    private final CarritoRepository repository;
+public class RankingService {
+    private final RankingRepository repository;
 
-    CarritoService(CarritoRepository repository) {
+    RankingService(RankingRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/carrito")
-    public List<Carrito> getAll() {
+    @GetMapping("/ranking")
+    public List<Ranking> getAll() {
         return repository.getAll();
     }
 
-    @GetMapping("/carrito/{id}")
-    public List<Carrito> getById(@PathVariable Integer id) {
+    @GetMapping("/ranking/{id}")
+    public List<Ranking> getById(@PathVariable Integer id) {
         return repository.getById(id);
     }
 
-    @PostMapping("/carrito")
+    @PostMapping("/ranking")
     @ResponseBody
-    public Carrito create(@RequestBody Carrito data) {
+    public Ranking create(@RequestBody Ranking data) {
         return repository.create(data);
     }
 
-    @PutMapping("/carrito/{id}")
+    @PutMapping("/ranking/{id}")
     @ResponseBody
-    public Carrito update(@RequestBody Carrito data, @PathVariable Integer id) {
-        data.setId_carrito(id); 
+    public Ranking update(@RequestBody Ranking data, @PathVariable Integer id) {
+        data.setId_ranking(id); 
         return repository.update(data);
     }
 
-    @DeleteMapping("/carrito/{id}")
+    @DeleteMapping("/ranking/{id}")
     public void delete(@PathVariable Integer id) {
         repository.delete(id);
     }

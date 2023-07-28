@@ -8,6 +8,6 @@ public interface ValoracionRepository {
     public List<Valoracion> getAll();
     public List<Valoracion> getById(Integer id);
     public Valoracion create(Valoracion data);
-    public Valoracion update(Valoracion data, Integer id);
+    public Valoracion update(Valoracion data);
     public void delete(Integer id);
 }

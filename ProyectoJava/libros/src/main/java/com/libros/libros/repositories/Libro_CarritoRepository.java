@@ -2,12 +2,12 @@ package com.libros.libros.repositories;
 
 import java.util.List;
 
-import com.libros.libros.models.Libro_Carrito;
+import com.libros.libros.models.Libro_carrito;
 
-public interface Libro_CarritoRepository {
-    public List<Libro_Carrito> getAll();
-    public List<Libro_Carrito> getById(Integer id);
-    public Libro_Carrito create(Libro_Carrito data);
-    public Libro_Carrito update(Libro_Carrito data, Integer id);
+public interface Libro_carritoRepository {
+    public List<Libro_carrito> getAll();
+    public List<Libro_carrito> getById(Integer id);
+    public Libro_carrito create(Libro_carrito data);
+    public Libro_carrito update(Libro_carrito data);
     public void delete(Integer id);
 }

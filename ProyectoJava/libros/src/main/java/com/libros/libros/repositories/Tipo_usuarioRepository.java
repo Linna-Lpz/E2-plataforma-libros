@@ -8,6 +8,6 @@ public interface Tipo_usuarioRepository {
     public List<Tipo_usuario> getAll();
     public List<Tipo_usuario> getById(Integer id);
     public Tipo_usuario create(Tipo_usuario data);
-    public Tipo_usuario update(Tipo_usuario data, Integer id);
+    public Tipo_usuario update(Tipo_usuario data);
     public void delete(Integer id);
 }

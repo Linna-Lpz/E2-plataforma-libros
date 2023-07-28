@@ -8,6 +8,6 @@ public interface UbicacionRepository {
     public List<Ubicacion> getAll();
     public List<Ubicacion> getById(Integer id);
     public Ubicacion create(Ubicacion data);
-    public Ubicacion update(Ubicacion data, Integer id);
+    public Ubicacion update(Ubicacion data);
     public void delete(Integer id);
 }

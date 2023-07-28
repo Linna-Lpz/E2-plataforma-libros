@@ -17,31 +17,79 @@ public class RestriccionRepositoryImp implements RestriccionRepository {
 
     @Override
     public List<Restriccion> getAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        try(Connection conn = sql2o.open()) {
+            return conn.createQuery("SELECT * FROM restriccion")
+            .executeAndFetch(Restriccion.class);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public List<Restriccion> getById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery("SELECT * FROM restriccion WHERE id_restriccion = :id ")
+                    .addParameter("id", id)
+                    .executeAndFetch(Restriccion.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Restriccion create(Restriccion data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        try(Connection conn = sql2o.open()){
+            String sql = "INSERT INTO restriccion (\n" +
+                             "edad_minima\n" +
+                         ") VALUES (\n" +
+                             ":edad_minima\n" +
+                         ")";
+            conn.createQuery(sql, false)
+                .addParameter("edad_minima", data.getEdad_minima())
+
+                .executeUpdate();
+                return data;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
-    public Restriccion update(Restriccion data, Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    public Restriccion update(Restriccion data) {
+        try(Connection conn = sql2o.open()){
+            Integer id = data.getId_restriccion();
+            String sql = "" +
+                "UPDATE restriccion SET\r\n" +
+                    "edad_minima = :edad_minima" +
+                "WHERE id_restriccion = :id";
+            conn.createQuery(sql, false)
+                .addParameter("id", id)
+                .addParameter("edad_minima", data.getEdad_minima())
+
+                .executeUpdate();
+                return data;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public void delete(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        try(Connection conn = sql2o.open()){
+            String sql = "" +
+                "DELETE FROM restriccion\r\n" +
+                "WHERE id_restriccion = :id";
+            conn.createQuery(sql, true)
+                .addParameter("id", id)
+                .executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
+    
 }

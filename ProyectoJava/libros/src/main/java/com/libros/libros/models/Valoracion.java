@@ -1,40 +1,41 @@
 package com.libros.libros.models;
 
 public class Valoracion {
-	private Integer id_valoracion;
-	private String comentario;
-	private Integer puntuacion;
-	private Integer fk_id_libro;
-	private String fk_usuario_valoracion;
+    private Integer id_valoracion;
+    private String comentario;
+    private Integer puntuacion;
+    private Integer id_libro;
+    private Integer id_usuario;
 
+    
     public Integer getId_valoracion() {
         return id_valoracion;
     }
-    public void setId_valoracion(Integer id_valoracion) {
-        this.id_valoracion = id_valoracion;
+    public void setId_valoracion(Integer new_value) {
+        this.id_valoracion = new_value;
     }
     public String getComentario() {
         return comentario;
     }
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
+    public void setComentario(String new_value) {
+        this.comentario = new_value;
     }
     public Integer getPuntuacion() {
         return puntuacion;
     }
-    public void setPuntuacion(Integer puntuacion) {
-        this.puntuacion = puntuacion;
+    public void setPuntuacion(Integer new_value) {
+        this.puntuacion = new_value;
     }
-    public Integer getFk_id_libro() {
-        return fk_id_libro;
+    public Integer getId_libro() {
+        return id_libro;
     }
-    public void setFk_id_libro(Integer fk_id_libro) {
-        this.fk_id_libro = fk_id_libro;
+    public void setId_libro(Integer new_value) {
+        this.id_libro = new_value;
     }
-    public String getFk_usuario_valoracion() {
-        return fk_usuario_valoracion;
+    public Integer getId_usuario() {
+        return id_usuario;
     }
-    public void setFk_usuario_valoracion(String fk_usuario_valoracion) {
-        this.fk_usuario_valoracion = fk_usuario_valoracion;
+    public void setId_usuario(Integer new_value) {
+        this.id_usuario = new_value;
     }
 }

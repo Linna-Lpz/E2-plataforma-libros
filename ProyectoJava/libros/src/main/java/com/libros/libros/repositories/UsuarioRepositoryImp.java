@@ -17,31 +17,89 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 
     @Override
     public List<Usuario> getAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        try(Connection conn = sql2o.open()) {
+            return conn.createQuery("SELECT * FROM usuario")
+            .executeAndFetch(Usuario.class);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
-    public List<Usuario> getById(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+    public List<Usuario> getById(Integer id) {
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery("SELECT * FROM usuario WHERE id_usuario = :id ")
+                    .addParameter("id", id)
+                    .executeAndFetch(Usuario.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Usuario create(Usuario data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        try(Connection conn = sql2o.open()){
+            String sql = "INSERT INTO usuario (\n" +
+                             "correo,fecha_nacimiento,contrasegna,nombre_usuario,id_tipo_usuario,id_ubicacion\n" +
+                         ") VALUES (\n" +
+                             ":correo, :fecha_nacimiento, :contrasegna, :nombre_usuario, :id_tipo_usuario, :id_ubicacion\n" +
+                         ")";
+            conn.createQuery(sql, false)
+                .addParameter("correo", data.getCorreo())
+                .addParameter("fecha_nacimiento", data.getFecha_nacimiento())
+                .addParameter("contrasegna", data.getContrasegna())
+                .addParameter("nombre_usuario", data.getNombre_usuario())
+                .addParameter("id_tipo_usuario", data.getId_tipo_usuario())
+                .addParameter("id_ubicacion", data.getId_ubicacion())
+
+                .executeUpdate();
+                return data;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
-    public Usuario update(Usuario data, String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public Usuario update(Usuario data) {
+        try(Connection conn = sql2o.open()){
+            Integer id = data.getId_usuario();
+            String sql = "" +
+                "UPDATE usuario SET\r\n" +
+                    "correo = :correo, fecha_nacimiento = :fecha_nacimiento, contrasegna = :contrasegna, nombre_usuario = :nombre_usuario, id_tipo_usuario = :id_tipo_usuario, id_ubicacion = :id_ubicacion" +
+                "WHERE id_usuario = :id";
+            conn.createQuery(sql, false)
+                .addParameter("id", id)
+                .addParameter("correo", data.getCorreo())
+                .addParameter("fecha_nacimiento", data.getFecha_nacimiento())
+                .addParameter("contrasegna", data.getContrasegna())
+                .addParameter("nombre_usuario", data.getNombre_usuario())
+                .addParameter("id_tipo_usuario", data.getId_tipo_usuario())
+                .addParameter("id_ubicacion", data.getId_ubicacion())
+
+                .executeUpdate();
+                return data;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
-    public void delete(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    public void delete(Integer id) {
+        try(Connection conn = sql2o.open()){
+            String sql = "" +
+                "DELETE FROM usuario\r\n" +
+                "WHERE id_usuario = :id";
+            conn.createQuery(sql, true)
+                .addParameter("id", id)
+                .executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
+    
 }

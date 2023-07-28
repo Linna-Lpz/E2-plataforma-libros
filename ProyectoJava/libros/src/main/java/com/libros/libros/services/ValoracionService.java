@@ -12,42 +12,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.libros.libros.models.Carrito;
-import com.libros.libros.repositories.CarritoRepository;
+import com.libros.libros.models.Valoracion;
+import com.libros.libros.repositories.ValoracionRepository;
 
 @CrossOrigin
 @RestController
-public class CarritoService {
-    private final CarritoRepository repository;
+public class ValoracionService {
+    private final ValoracionRepository repository;
 
-    CarritoService(CarritoRepository repository) {
+    ValoracionService(ValoracionRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/carrito")
-    public List<Carrito> getAll() {
+    @GetMapping("/valoracion")
+    public List<Valoracion> getAll() {
         return repository.getAll();
     }
 
-    @GetMapping("/carrito/{id}")
-    public List<Carrito> getById(@PathVariable Integer id) {
+    @GetMapping("/valoracion/{id}")
+    public List<Valoracion> getById(@PathVariable Integer id) {
         return repository.getById(id);
     }
 
-    @PostMapping("/carrito")
+    @PostMapping("/valoracion")
     @ResponseBody
-    public Carrito create(@RequestBody Carrito data) {
+    public Valoracion create(@RequestBody Valoracion data) {
         return repository.create(data);
     }
 
-    @PutMapping("/carrito/{id}")
+    @PutMapping("/valoracion/{id}")
     @ResponseBody
-    public Carrito update(@RequestBody Carrito data, @PathVariable Integer id) {
-        data.setId_carrito(id); 
+    public Valoracion update(@RequestBody Valoracion data, @PathVariable Integer id) {
+        data.setId_valoracion(id); 
         return repository.update(data);
     }
 
-    @DeleteMapping("/carrito/{id}")
+    @DeleteMapping("/valoracion/{id}")
     public void delete(@PathVariable Integer id) {
         repository.delete(id);
     }

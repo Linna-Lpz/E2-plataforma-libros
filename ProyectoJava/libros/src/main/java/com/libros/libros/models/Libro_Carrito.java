@@ -1,27 +1,34 @@
 package com.libros.libros.models;
 
-public class Libro_Carrito {
-	private Integer id_libro_carrito;
-	private Integer libro_carrito_libro_fk;
-	private Integer libro_carrito_carrito_fk;
+public class Libro_carrito {
+    private Integer id_libro_carrito;
+    private Integer id_libro;
+    private Integer id_carrito;
+    private Integer cantidad;
 
+    
     public Integer getId_libro_carrito() {
         return id_libro_carrito;
     }
-    public void setId_libro_carrito(Integer id_libro_carrito) {
-        this.id_libro_carrito = id_libro_carrito;
+    public void setId_libro_carrito(Integer new_value) {
+        this.id_libro_carrito = new_value;
     }
-    public Integer getLibro_carrito_libro_fk() {
-        return libro_carrito_libro_fk;
+    public Integer getId_libro() {
+        return id_libro;
     }
-    public void setLibro_carrito_libro_fk(Integer libro_carrito_libro_fk) {
-        this.libro_carrito_libro_fk = libro_carrito_libro_fk;
+    public void setId_libro(Integer new_value) {
+        this.id_libro = new_value;
     }
-    public Integer getLibro_carrito_carrito_fk() {
-        return libro_carrito_carrito_fk;
+    public Integer getId_carrito() {
+        return id_carrito;
     }
-    public void setLibro_carrito_carrito_fk(Integer libro_carrito_carrito_fk) {
-        this.libro_carrito_carrito_fk = libro_carrito_carrito_fk;
+    public void setId_carrito(Integer new_value) {
+        this.id_carrito = new_value;
     }
-
+    public Integer getCantidad() {
+        return cantidad;
+    }
+    public void setCantidad(Integer new_value) {
+        this.cantidad = new_value;
+    }
 }

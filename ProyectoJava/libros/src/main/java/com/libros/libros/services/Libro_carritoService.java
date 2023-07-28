@@ -12,42 +12,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.libros.libros.models.Carrito;
-import com.libros.libros.repositories.CarritoRepository;
+import com.libros.libros.models.Libro_carrito;
+import com.libros.libros.repositories.Libro_carritoRepository;
 
 @CrossOrigin
 @RestController
-public class CarritoService {
-    private final CarritoRepository repository;
+public class Libro_carritoService {
+    private final Libro_carritoRepository repository;
 
-    CarritoService(CarritoRepository repository) {
+    Libro_carritoService(Libro_carritoRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/carrito")
-    public List<Carrito> getAll() {
+    @GetMapping("/libro_carrito")
+    public List<Libro_carrito> getAll() {
         return repository.getAll();
     }
 
-    @GetMapping("/carrito/{id}")
-    public List<Carrito> getById(@PathVariable Integer id) {
+    @GetMapping("/libro_carrito/{id}")
+    public List<Libro_carrito> getById(@PathVariable Integer id) {
         return repository.getById(id);
     }
 
-    @PostMapping("/carrito")
+    @PostMapping("/libro_carrito")
     @ResponseBody
-    public Carrito create(@RequestBody Carrito data) {
+    public Libro_carrito create(@RequestBody Libro_carrito data) {
         return repository.create(data);
     }
 
-    @PutMapping("/carrito/{id}")
+    @PutMapping("/libro_carrito/{id}")
     @ResponseBody
-    public Carrito update(@RequestBody Carrito data, @PathVariable Integer id) {
-        data.setId_carrito(id); 
+    public Libro_carrito update(@RequestBody Libro_carrito data, @PathVariable Integer id) {
+        data.setId_libro_carrito(id); 
         return repository.update(data);
     }
 
-    @DeleteMapping("/carrito/{id}")
+    @DeleteMapping("/libro_carrito/{id}")
     public void delete(@PathVariable Integer id) {
         repository.delete(id);
     }

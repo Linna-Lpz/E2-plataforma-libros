@@ -1,33 +1,34 @@
 package com.libros.libros.models;
 
-public class usuario_libro {
-	private Integer id_usuario_libro;
-	private String favoritos;
-	private String fk_usuario;
-	private Integer fk_libro;
+public class Usuario_libro {
+    private Integer id_usuario_libro;
+    private String favoritos;
+    private Integer id_usuario;
+    private Integer id_libro;
 
+    
     public Integer getId_usuario_libro() {
         return id_usuario_libro;
     }
-    public void setId_usuario_libro(Integer id_usuario_libro) {
-        this.id_usuario_libro = id_usuario_libro;
+    public void setId_usuario_libro(Integer new_value) {
+        this.id_usuario_libro = new_value;
     }
     public String getFavoritos() {
         return favoritos;
     }
-    public void setFavoritos(String favoritos) {
-        this.favoritos = favoritos;
+    public void setFavoritos(String new_value) {
+        this.favoritos = new_value;
     }
-    public String getFk_usuario() {
-        return fk_usuario;
+    public Integer getId_usuario() {
+        return id_usuario;
     }
-    public void setFk_usuario(String fk_usuario) {
-        this.fk_usuario = fk_usuario;
+    public void setId_usuario(Integer new_value) {
+        this.id_usuario = new_value;
     }
-    public Integer getFk_libro() {
-        return fk_libro;
+    public Integer getId_libro() {
+        return id_libro;
     }
-    public void setFk_libro(Integer fk_libro) {
-        this.fk_libro = fk_libro;
+    public void setId_libro(Integer new_value) {
+        this.id_libro = new_value;
     }
 }

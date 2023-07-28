@@ -8,6 +8,6 @@ public interface RestriccionRepository {
     public List<Restriccion> getAll();
     public List<Restriccion> getById(Integer id);
     public Restriccion create(Restriccion data);
-    public Restriccion update(Restriccion data, Integer id);
+    public Restriccion update(Restriccion data);
     public void delete(Integer id);
 }
