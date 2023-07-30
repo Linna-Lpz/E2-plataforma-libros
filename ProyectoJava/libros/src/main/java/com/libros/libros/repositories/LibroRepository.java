@@ -9,5 +9,5 @@ public interface LibroRepository {
     public List<Libro> getById(Integer id);
     public Libro create(Libro data);
     public Libro update(Libro data);
-    public void delete(Integer id);
+    public String delete(Integer id);
 }

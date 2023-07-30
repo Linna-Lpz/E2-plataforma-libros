@@ -79,7 +79,7 @@ public class RankingRepositoryImp implements RankingRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public String delete(Integer id) {
         try(Connection conn = sql2o.open()){
             String sql = "" +
                 "DELETE FROM ranking\r\n" +
@@ -87,8 +87,10 @@ public class RankingRepositoryImp implements RankingRepository {
             conn.createQuery(sql, true)
                 .addParameter("id", id)
                 .executeUpdate();
+            return "Eliminado correctamente";
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "Error al eliminar";
         }
     }
     

@@ -79,7 +79,7 @@ public class RestriccionRepositoryImp implements RestriccionRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public String delete(Integer id) {
         try(Connection conn = sql2o.open()){
             String sql = "" +
                 "DELETE FROM restriccion\r\n" +
@@ -87,8 +87,10 @@ public class RestriccionRepositoryImp implements RestriccionRepository {
             conn.createQuery(sql, true)
                 .addParameter("id", id)
                 .executeUpdate();
+            return "Restriccion eliminada";
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "Error al eliminar restriccion";
         }
     }
     

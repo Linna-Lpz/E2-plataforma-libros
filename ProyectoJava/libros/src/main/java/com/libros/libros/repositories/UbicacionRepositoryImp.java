@@ -79,16 +79,16 @@ public class UbicacionRepositoryImp implements UbicacionRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public String delete(Integer id) {
         try(Connection conn = sql2o.open()){
-            String sql = "" +
-                "DELETE FROM ubicacion\r\n" +
-                "WHERE id_ubicacion = :id";
+            String sql = "DELETE FROM ubicacion WHERE id_ubicacion = :id";
             conn.createQuery(sql, true)
                 .addParameter("id", id)
                 .executeUpdate();
+            return "Ubicación eliminada correctamente";
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "Error al eliminar ubicación";
         }
     }
     

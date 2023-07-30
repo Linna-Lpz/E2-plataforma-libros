@@ -9,5 +9,5 @@ public interface RestriccionRepository {
     public List<Restriccion> getById(Integer id);
     public Restriccion create(Restriccion data);
     public Restriccion update(Restriccion data);
-    public void delete(Integer id);
+    public String delete(Integer id);
 }

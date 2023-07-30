@@ -9,5 +9,5 @@ public interface UbicacionRepository {
     public List<Ubicacion> getById(Integer id);
     public Ubicacion create(Ubicacion data);
     public Ubicacion update(Ubicacion data);
-    public void delete(Integer id);
+    public String delete(Integer id);
 }

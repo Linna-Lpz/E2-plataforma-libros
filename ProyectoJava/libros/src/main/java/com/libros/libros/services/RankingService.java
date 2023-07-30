@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.libros.libros.models.Ranking;
@@ -48,7 +49,9 @@ public class RankingService {
     }
 
     @DeleteMapping("/ranking/{id}")
-    public void delete(@PathVariable Integer id) {
-        repository.delete(id);
+    public ResponseEntity<String> delete(@PathVariable Integer id) {
+        String result = repository.delete(id);
+        return ResponseEntity.ok(result);
     }
+
 }

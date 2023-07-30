@@ -7,19 +7,19 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
-import com.libros.libros.models.Usuario_libro;
+import com.libros.libros.models.Factura;
 
 @Repository
-public class Usuario_libroRepositoryImp implements Usuario_libroRepository {
+public class FacturaRepositoryImp implements FacturaRepository {
 
     @Autowired
     private Sql2o sql2o;
 
     @Override
-    public List<Usuario_libro> getAll() {
+    public List<Factura> getAll() {
         try(Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT * FROM usuario_libro")
-            .executeAndFetch(Usuario_libro.class);
+            return conn.createQuery("SELECT * FROM factura")
+            .executeAndFetch(Factura.class);
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -28,11 +28,11 @@ public class Usuario_libroRepositoryImp implements Usuario_libroRepository {
     }
 
     @Override
-    public List<Usuario_libro> getById(Integer id) {
+    public List<Factura> getById(Integer id) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM usuario_libro WHERE id_usuario_libro = :id ")
+            return conn.createQuery("SELECT * FROM factura WHERE id_factura = :id ")
                     .addParameter("id", id)
-                    .executeAndFetch(Usuario_libro.class);
+                    .executeAndFetch(Factura.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -40,17 +40,18 @@ public class Usuario_libroRepositoryImp implements Usuario_libroRepository {
     }
 
     @Override
-    public Usuario_libro create(Usuario_libro data) {
+    public Factura create(Factura data) {
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO usuario_libro (\n" +
-                             "favoritos,id_usuario,id_libro\n" +
+            String sql = "INSERT INTO factura (\n" +
+                             "metodo_pago,fecha_factura,id_usuario,id_carrito\n" +
                          ") VALUES (\n" +
-                             ":favoritos, :id_usuario, :id_libro\n" +
+                             ":metodo_pago, :fecha_factura, :id_usuario, :id_carrito\n" +
                          ")";
             conn.createQuery(sql, false)
-                .addParameter("favoritos", data.getFavoritos())
+                .addParameter("metodo_pago", data.getMetodo_pago())
+                .addParameter("fecha_factura", data.getFecha_factura())
                 .addParameter("id_usuario", data.getId_usuario())
-                .addParameter("id_libro", data.getId_libro())
+                .addParameter("id_carrito", data.getId_carrito())
 
                 .executeUpdate();
                 return data;
@@ -61,18 +62,19 @@ public class Usuario_libroRepositoryImp implements Usuario_libroRepository {
     }
 
     @Override
-    public Usuario_libro update(Usuario_libro data) {
+    public Factura update(Factura data) {
         try(Connection conn = sql2o.open()){
-            Integer id = data.getId_usuario_libro();
+            Integer id = data.getId_factura();
             String sql = "" +
-                "UPDATE usuario_libro SET\r\n" +
-                    "favoritos = :favoritos, id_usuario = :id_usuario, id_libro = :id_libro" +
-                "WHERE id_usuario_libro = :id";
+                "UPDATE factura SET\r\n" +
+                    "metodo_pago = :metodo_pago, fecha_factura = :fecha_factura, id_usuario = :id_usuario, id_carrito = :id_carrito" +
+                "WHERE id_factura = :id";
             conn.createQuery(sql, false)
                 .addParameter("id", id)
-                .addParameter("favoritos", data.getFavoritos())
+                .addParameter("metodo_pago", data.getMetodo_pago())
+                .addParameter("fecha_factura", data.getFecha_factura())
                 .addParameter("id_usuario", data.getId_usuario())
-                .addParameter("id_libro", data.getId_libro())
+                .addParameter("id_carrito", data.getId_carrito())
 
                 .executeUpdate();
                 return data;
@@ -83,16 +85,18 @@ public class Usuario_libroRepositoryImp implements Usuario_libroRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public String delete(Integer id) {
         try(Connection conn = sql2o.open()){
             String sql = "" +
-                "DELETE FROM usuario_libro\r\n" +
-                "WHERE id_usuario_libro = :id";
+                "DELETE FROM factura\r\n" +
+                "WHERE id_factura = :id";
             conn.createQuery(sql, true)
                 .addParameter("id", id)
                 .executeUpdate();
+            return "Factura eliminada corretamente";
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "Error al eliminar";
         }
     }
     

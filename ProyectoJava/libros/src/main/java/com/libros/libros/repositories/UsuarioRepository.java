@@ -9,5 +9,5 @@ public interface UsuarioRepository {
     public List<Usuario> getById(Integer id);
     public Usuario create(Usuario data);
     public Usuario update(Usuario data);
-    public void delete(Integer id);
+    public String delete(Integer id);
 }

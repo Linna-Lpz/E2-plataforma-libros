@@ -89,7 +89,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public String delete(Integer id) {
         try(Connection conn = sql2o.open()){
             String sql = "" +
                 "DELETE FROM usuario\r\n" +
@@ -97,9 +97,11 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
             conn.createQuery(sql, true)
                 .addParameter("id", id)
                 .executeUpdate();
+            return "Usuario eliminado correctamente";
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "Error al eliminar usuario";
         }
     }
-    
+
 }

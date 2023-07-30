@@ -9,5 +9,5 @@ public interface CarritoRepository {
     public List<Carrito> getById(Integer id);
     public Carrito create(Carrito data);
     public Carrito update(Carrito data);
-    public void delete(Integer id);
+    public String delete(Integer id);
 }

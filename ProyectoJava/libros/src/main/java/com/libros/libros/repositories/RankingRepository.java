@@ -9,5 +9,5 @@ public interface RankingRepository {
     public List<Ranking> getById(Integer id);
     public Ranking create(Ranking data);
     public Ranking update(Ranking data);
-    public void delete(Integer id);
+    public String delete(Integer id);
 }

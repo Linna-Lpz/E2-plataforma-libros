@@ -103,7 +103,7 @@ public class LibroRepositoryImp implements LibroRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public String delete(Integer id) {
         try(Connection conn = sql2o.open()){
             String sql = "" +
                 "DELETE FROM libro\r\n" +
@@ -111,8 +111,10 @@ public class LibroRepositoryImp implements LibroRepository {
             conn.createQuery(sql, true)
                 .addParameter("id", id)
                 .executeUpdate();
+            return "Eliminado correctamente";
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "Error al eliminar";
         }
     }
     

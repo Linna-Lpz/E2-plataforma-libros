@@ -81,7 +81,7 @@ public class CarritoRepositoryImp implements CarritoRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public String delete(Integer id) {
         try(Connection conn = sql2o.open()){
             String sql = "" +
                 "DELETE FROM carrito\r\n" +
@@ -89,8 +89,10 @@ public class CarritoRepositoryImp implements CarritoRepository {
             conn.createQuery(sql, true)
                 .addParameter("id", id)
                 .executeUpdate();
+            return "Carrito eliminado correctamente";
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "Error al eliminar";
         }
     }
     

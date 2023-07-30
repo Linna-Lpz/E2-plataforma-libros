@@ -9,5 +9,5 @@ public interface ValoracionRepository {
     public List<Valoracion> getById(Integer id);
     public Valoracion create(Valoracion data);
     public Valoracion update(Valoracion data);
-    public void delete(Integer id);
+    public String delete(Integer id);
 }

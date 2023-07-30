@@ -9,5 +9,5 @@ public interface FacturaRepository {
     public List<Factura> getById(Integer id);
     public Factura create(Factura data);
     public Factura update(Factura data);
-    public void delete(Integer id);
+    public String delete(Integer id);
 }

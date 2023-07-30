@@ -7,19 +7,19 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
-import com.libros.libros.models.Libro_carrito;
+import com.libros.libros.models.Usuario_libro;
 
 @Repository
-public class Libro_carritoRepositoryImp implements Libro_carritoRepository {
+public class Usuario_libroRepositoryImp implements Usuario_libroRepository {
 
     @Autowired
     private Sql2o sql2o;
 
     @Override
-    public List<Libro_carrito> getAll() {
+    public List<Usuario_libro> getAll() {
         try(Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT * FROM libro_carrito")
-            .executeAndFetch(Libro_carrito.class);
+            return conn.createQuery("SELECT * FROM usuario_libro")
+            .executeAndFetch(Usuario_libro.class);
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -28,11 +28,11 @@ public class Libro_carritoRepositoryImp implements Libro_carritoRepository {
     }
 
     @Override
-    public List<Libro_carrito> getById(Integer id) {
+    public List<Usuario_libro> getById(Integer id) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM libro_carrito WHERE id_libro_carrito = :id ")
+            return conn.createQuery("SELECT * FROM usuario_libro WHERE id_usuario_libro = :id ")
                     .addParameter("id", id)
-                    .executeAndFetch(Libro_carrito.class);
+                    .executeAndFetch(Usuario_libro.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -40,17 +40,17 @@ public class Libro_carritoRepositoryImp implements Libro_carritoRepository {
     }
 
     @Override
-    public Libro_carrito create(Libro_carrito data) {
+    public Usuario_libro create(Usuario_libro data) {
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO libro_carrito (\n" +
-                             "id_libro,id_carrito,cantidad\n" +
+            String sql = "INSERT INTO usuario_libro (\n" +
+                             "favoritos,id_usuario,id_libro\n" +
                          ") VALUES (\n" +
-                             ":id_libro, :id_carrito, :cantidad\n" +
+                             ":favoritos, :id_usuario, :id_libro\n" +
                          ")";
             conn.createQuery(sql, false)
+                .addParameter("favoritos", data.getFavoritos())
+                .addParameter("id_usuario", data.getId_usuario())
                 .addParameter("id_libro", data.getId_libro())
-                .addParameter("id_carrito", data.getId_carrito())
-                .addParameter("cantidad", data.getCantidad())
 
                 .executeUpdate();
                 return data;
@@ -61,18 +61,18 @@ public class Libro_carritoRepositoryImp implements Libro_carritoRepository {
     }
 
     @Override
-    public Libro_carrito update(Libro_carrito data) {
+    public Usuario_libro update(Usuario_libro data) {
         try(Connection conn = sql2o.open()){
-            Integer id = data.getId_libro_carrito();
+            Integer id = data.getId_usuario_libro();
             String sql = "" +
-                "UPDATE libro_carrito SET\r\n" +
-                    "id_libro = :id_libro, id_carrito = :id_carrito, cantidad = :cantidad" +
-                "WHERE id_libro_carrito = :id";
+                "UPDATE usuario_libro SET\r\n" +
+                    "favoritos = :favoritos, id_usuario = :id_usuario, id_libro = :id_libro" +
+                "WHERE id_usuario_libro = :id";
             conn.createQuery(sql, false)
                 .addParameter("id", id)
+                .addParameter("favoritos", data.getFavoritos())
+                .addParameter("id_usuario", data.getId_usuario())
                 .addParameter("id_libro", data.getId_libro())
-                .addParameter("id_carrito", data.getId_carrito())
-                .addParameter("cantidad", data.getCantidad())
 
                 .executeUpdate();
                 return data;
@@ -83,16 +83,18 @@ public class Libro_carritoRepositoryImp implements Libro_carritoRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public String delete(Integer id) {
         try(Connection conn = sql2o.open()){
             String sql = "" +
-                "DELETE FROM libro_carrito\r\n" +
-                "WHERE id_libro_carrito = :id";
+                "DELETE FROM usuario_libro\r\n" +
+                "WHERE id_usuario_libro = :id";
             conn.createQuery(sql, true)
                 .addParameter("id", id)
                 .executeUpdate();
+            return "Eliminado correctamente";
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "Error al eliminar";
         }
     }
     

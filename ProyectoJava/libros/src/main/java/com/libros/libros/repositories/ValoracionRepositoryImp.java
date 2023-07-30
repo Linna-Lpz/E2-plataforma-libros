@@ -85,7 +85,7 @@ public class ValoracionRepositoryImp implements ValoracionRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public String delete(Integer id) {
         try(Connection conn = sql2o.open()){
             String sql = "" +
                 "DELETE FROM valoracion\r\n" +
@@ -93,8 +93,10 @@ public class ValoracionRepositoryImp implements ValoracionRepository {
             conn.createQuery(sql, true)
                 .addParameter("id", id)
                 .executeUpdate();
+            return "Valoración eliminada correctamente";
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "Error al eliminar valoración";
         }
     }
     
